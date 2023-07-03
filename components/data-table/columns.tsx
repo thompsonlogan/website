@@ -21,6 +21,7 @@ import {
   } from "@radix-ui/react-icons"
 // import { WeekNumber } from "react-day-picker"
 import { DataTableRowActions } from "./data-table-row-actions"
+import { NotesButton } from "./notes-button"
   
   export type Exercise = {
     day: string,             // week of the program
@@ -137,7 +138,7 @@ import { DataTableRowActions } from "./data-table-row-actions"
       accessorKey: "notes",
       header: () => <div className="text-center">Notes</div>,
       cell: ({row}) => {
-        return <div className="text-left">{row.original.notes}</div>
+        return <NotesButton/>/*<div className="text-left">{row.original.notes}</div>*/
       }
     },
     /*{
