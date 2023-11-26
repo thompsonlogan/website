@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
-// import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 
 import {
@@ -19,12 +19,11 @@ import {
     ChevronDownIcon,
     DotsHorizontalIcon,
   } from "@radix-ui/react-icons"
-// import { WeekNumber } from "react-day-picker"
 import { DataTableRowActions } from "./data-table-row-actions"
 import { NotesButton } from "./notes-button"
   
   export type Exercise = {
-    day: string,             // week of the program
+    day: string,              // week of the program
     exercise: string,         // name of the exercise
     warmup_sets: number,      // number of warmup sets
     working_sets: number,     // number of working sets
@@ -40,32 +39,6 @@ import { NotesButton } from "./notes-button"
   let weekNumber = "Week 1"
   
   export const columns: ColumnDef<Exercise>[] = [
-    /*{
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={table.getIsAllPageRowsSelected()}
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
-    },*/
-    /*{
-      accessorKey: "day",
-      header: weekNumber,
-      cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("status")}</div>
-      ),
-    },*/
     {
       accessorKey: "day",
       header: weekNumber,
@@ -81,6 +54,14 @@ import { NotesButton } from "./notes-button"
       accessorKey: "warmup_sets",
       header: () => <div className="text-center">Warm-up Sets</div>,
       cell: ({row}) => {
+        let selected = row.getIsSelected();
+        if (selected) {
+          return (
+            <div className="flex justify-center items-center h-full">
+              <input type="text" id="warmup_sets_input" defaultValue={row.original.warmup_sets} className="rounded-sm w-11 text-center"/>
+            </div>
+          )
+        }
         return <div className="text-center">{row.original.warmup_sets}</div>
       }
     },
@@ -88,6 +69,14 @@ import { NotesButton } from "./notes-button"
       accessorKey: "working_sets",
       header: () => <div className="text-center">Working Sets</div>,
       cell: ({row}) => {
+        let selected = row.getIsSelected();
+        if (selected) {
+          return (
+            <div className="flex justify-center items-center h-full">
+              <input type="text" id="working_sets_input" defaultValue={row.original.working_sets} className="rounded-sm w-11 text-center"/>
+            </div>
+          )
+        }
         return <div className="text-center">{row.original.working_sets}</div>
       }
     },
@@ -95,6 +84,14 @@ import { NotesButton } from "./notes-button"
       accessorKey: "reps",
       header: () => <div className="text-center">Reps</div>,
       cell: ({row}) => {
+        let selected = row.getIsSelected();
+        if (selected) {
+          return (
+            <div className="flex justify-center items-center h-full">
+              <input type="text" id="reps_input" defaultValue={row.original.reps} className="rounded-sm w-11 text-center"/>
+            </div>
+          )
+        }
         return <div className="text-center">{row.original.reps}</div>
       }
     },
@@ -102,6 +99,14 @@ import { NotesButton } from "./notes-button"
       accessorKey: "load",
       header: () => <div className="text-center">Load (lbs)</div>,
       cell: ({row}) => {
+        let selected = row.getIsSelected();
+        if (selected) {
+          return (
+            <div className="flex justify-center items-center h-full">
+              <input type="text" id="load_input" defaultValue={row.original.load} className="rounded-sm w-11 text-center"/>
+            </div>
+          )
+        }
         return <div className="text-center">{row.original.load}</div>
       }
     },
@@ -109,7 +114,15 @@ import { NotesButton } from "./notes-button"
       accessorKey: "percent",
       header: () => <div className="text-center">% 1RM</div>,
       cell: ({row}) => {
-        const formatted = row.original.percent.toFixed(2)+"%"
+        let selected = row.getIsSelected();
+        const formatted = row.original.percent;//.toFixed(2)+"%"
+        if (selected) {
+          return (
+            <div className="flex justify-center items-center h-full">
+              <input type="text" id="percent_input" defaultValue={formatted} className="rounded-sm w-11 text-center"/>
+            </div>
+          )
+        }
         return <div className="text-center">{formatted}</div>
       }
     },
@@ -117,6 +130,14 @@ import { NotesButton } from "./notes-button"
       accessorKey: "rpe",
       header: () => <div className="text-center">RPE</div>,
       cell: ({row}) => {
+        let selected = row.getIsSelected();
+        if (selected) {
+          return (
+            <div className="flex justify-center items-center h-full">
+              <input type="text" id="rpe_input" defaultValue={row.original.rpe} className="rounded-sm w-11 text-center"/>
+            </div>
+          )
+        }
         return <div className="text-center">{row.original.rpe}</div>
       }
     },
@@ -124,6 +145,14 @@ import { NotesButton } from "./notes-button"
       accessorKey: "rest_time",
       header: () => <div className="text-center">Rest Time</div>,
       cell: ({row}) => {
+        let selected = row.getIsSelected();
+        if (selected) {
+          return (
+            <div className="flex justify-center items-center h-full">
+              <input type="text" id="rest_time_input" defaultValue={row.original.rest_time} className="rounded-sm w-11 text-center"/>
+            </div>
+          )
+        }
         return <div className="text-center">{row.original.rest_time}</div>
       }
     },
@@ -131,6 +160,14 @@ import { NotesButton } from "./notes-button"
       accessorKey: "actual",
       header: () => <div className="text-center">Actual</div>,
       cell: ({row}) => {
+        let selected = row.getIsSelected();
+        if (selected) {
+          return (
+            <div className="flex justify-center items-center h-full">
+              <input type="text" id="actual_input" defaultValue={row.original.actual} className="rounded-sm w-11 text-center"/>
+            </div>
+          )
+        }
         return <div className="text-center">{row.original.actual}</div>
       }
     },
@@ -141,67 +178,8 @@ import { NotesButton } from "./notes-button"
         return <NotesButton/>/*<div className="text-left">{row.original.notes}</div>*/
       }
     },
-    /*{
-      accessorKey: "email",
-      header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Email
-            <CaretSortIcon className="ml-2 h-4 w-4" />
-          </Button>
-        )
-      },
-      cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-    },
-    {
-      accessorKey: "amount",
-      header: () => <div className="text-right">Amount</div>,
-      cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("amount"))
-  
-        // Format the amount as a dollar amount
-        const formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-        }).format(amount)
-  
-        return <div className="text-right font-medium">{formatted}</div>
-      },
-    },*/
-    /*{
-      id: "actions",
-      enableHiding: false,
-      cell: ({ row }) => {
-        const exercise = row.original
-  
-        return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <DotsHorizontalIcon className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(exercise.exercise)}
-              >
-                Copy payment ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )
-      },
-    },*/
     {
       id: "actions",
-      cell: ({ row }) => <DataTableRowActions row={row} />,
+      cell: ({ table, column, row }) => <DataTableRowActions table={table} column={column} row={row} />,
     },
   ]
