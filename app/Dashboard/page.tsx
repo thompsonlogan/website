@@ -27,11 +27,14 @@ const sidebarNavItems = [
 export default function SettingsDashboardPage() {
     return (
         <div>
+            {
+            /*
             <ModeToggle/>
             <h1 className="text-center">Dashboard Header</h1>
             <aside className="-mx-4 lg:w-1/5">
                 <SidebarNav items={sidebarNavItems} />
-            </aside>
+            </aside>*/
+            }
             <Separator/>
             <DashboardForm/>
         </div>

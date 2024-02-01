@@ -294,7 +294,7 @@ function getData3(): Exercise[]{
 export function PlanForm() {
     return (
         <div>
-            <h1 className="text-center">Plan Page</h1>
+            {/*<h1 className="text-center">Plan Page</h1>*/}
             <div>
                 <DataTable columns={columns} data={getData1()} />
                 <DataTable columns={columns} data={getData2()} />

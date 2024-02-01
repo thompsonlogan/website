@@ -5,6 +5,8 @@ import { StatsForm } from "./stats-form";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SidebarNav } from "@/components/sidebar-nav";
 import { PlanForm } from "../Plan/plan-form";
+import { MainNav } from "@/app/Dashboard/components/main-nav"
+import { UserNav } from "@/app/Dashboard/components/user-nav"
 
 const sidebarNavItems = [
     {
@@ -28,15 +30,16 @@ const sidebarNavItems = [
 export default function SettingsPlanPage() {
     return (
         <div>
-          <div className="absloute top-0 right-0">
-            <ModeToggle/>
+          <div className="border-b">
+             <div className="flex h-16 items-center px-4">
+              <MainNav className="mx-6" />
+              <div className="ml-auto flex items-center space-x-4">
+                <UserNav />
+              </div>
+            </div>
           </div>
-            <h1 className="text-center">Account Header</h1>
-            <aside className="-mx-4 lg:w-1/5">
-                <SidebarNav items={sidebarNavItems} />
-            </aside>
-            <Separator/>
-            <StatsForm/>
+          <Separator/>
+          <StatsForm/>
         </div>
     )
 }

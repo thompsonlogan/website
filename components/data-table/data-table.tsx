@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({
       <div className="w-full">
         <div className="flex items-center py-4" >
         </div>
-        <div className="border-8 rounded-lg">
+        <div className="border-2 rounded-lg">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
