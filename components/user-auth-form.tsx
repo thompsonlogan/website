@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
+import { BackendApi, Configuration, LoginPostRequest } from "@/generated"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -34,13 +35,37 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     event.preventDefault();
     setIsLoading(true);
 
-    const dataToSend: LoginRequest  = {
+    const backendApi = new BackendApi(new Configuration({basePath: "http://localhost:5163"}))
+
+    const dataToSend: LoginPostRequest = {
+      loginRequest: {
+        email: "email@email.com",
+        password: "Test1!",
+      }
+  }
+
+  try {
+    var res = await backendApi.loginPost(dataToSend)
+
+    console.log("success")
+    console.log(res)
+  } catch (error) {
+    console.log(error)
+  }
+
+    /*const dataToSend: LoginRequest  = {
       email: email,
       password: password,
     };
 
     try {
-      const result = await postData(dataToSend);
+      //const result = await postData(dataToSend);
+
+      const result = {
+        email: "email@email.com",
+        token: "111111",
+        status: 200
+      }
 
       setIsLoading(false);
 
@@ -52,7 +77,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       }
     } catch (error) {
       console.log("error");
-    }
+    }*/
   }
 
   async function postData(dataToSend: LoginRequest): Promise<LoginResponse> {
